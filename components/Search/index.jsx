@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Movie } from "./Search";
+import classes from './Search.module.css';
 
 export function ResultMovie() {
-    return  <>
+    return  <div className={classes.main}>
             <MovieTest1 />
-        </>
+        </div>
 }
 
 function MovieTest1() {
@@ -21,10 +22,10 @@ function MovieTest1() {
             
             if (data.Response === "True") {
                 setError([]);
-                setMovies(data.Search); // Сохраняем найденные фильмы
+                setMovies(data.Search);
             } else {
                 setMovies([]);
-                setError(data.Error); // Отображаем ошибку, если фильм не найден
+                setError(data.Error); 
             }
         } catch (err) {
             setError("Ошибка при получении данных.");
@@ -39,13 +40,13 @@ function MovieTest1() {
 
     return   <>
         <div className="block-1">
-            <input 
+            <input className={classes.search}
                 type="search" 
                 value={nameMovie} 
                 onChange={(e) => setNameMovie(e.target.value)} 
                 placeholder="Введите название фильма"
             />
-            <button onClick={handleSearch}>Поиск</button>
+            <button className={classes.button} onClick={handleSearch}>Поиск</button>
             {error && <p>{error}</p>}
         </div>
         <Movie movies={movies} />
