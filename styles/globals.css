@@ -3,5 +3,46 @@ body {
 }
 
 main{
+  display: flex;
+  flex-direction: column;
+  align-items: self-end;
   margin: 0.5em;
+}
+.block-1{
+  margin: 1em;
+      display: flex;
+      width: 300px;
+      align-items: center;
+      input{
+        flex-grow: 1;
+        height: 30px;
+      }
+      button{
+       height: 30px;
+      }
+  }
+
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5em;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  figure{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+  }
+  figcaption{
+    background-color: gray;
+    width: 100%;
+    text-align: center;
+    text-wrap: balance;
+  } 
+  img{
+    width: 100%;
+  }
 }
