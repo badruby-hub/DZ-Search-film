@@ -39,7 +39,7 @@ function MovieTest1() {
     
 
     return   <>
-        <div className="block-1">
+        <div className={classes.block}>
             <input className={classes.search}
                 type="search" 
                 value={nameMovie} 
