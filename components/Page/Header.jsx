@@ -2,7 +2,7 @@ import Link from 'next/link';
 import classes from './Header.module.css';
 const 
     pages = [
-    {href:'/', name:'home'},
+    {href:'/', name:'Calendar'},
     {href:'/search', name:'Search movie'},
 ]
 export function Header (){

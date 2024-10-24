@@ -47,7 +47,6 @@ function MovieTest1() {
                 placeholder="Введите название фильма"
             />
             <button className={classes.button} onClick={handleSearch}>Поиск</button>
-            {error && <p>{error}</p>}
         </div>
         <Movie movies={movies} />
         </>
