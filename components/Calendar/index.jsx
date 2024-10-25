@@ -25,6 +25,17 @@ export function CalendarDemo() {
     </>;
 }   
 
+function SelectDay({date, setDate}) {
+    return <div onClick={ event=>{
+        const day = +event.target.closest('td[data-day]')?.dataset?.day;
+        if(day)
+            setDate(new Date(date.getFullYear(), date.getMonth(), day))
+    }
+        }>
+    <Calendar date={date}/>
+    </div>
+}
+
 function DateToYYYY_MM(date) {
     return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2,'0');
 }
@@ -40,7 +51,7 @@ function Test1() {
      [date, setDate] = useState(new Date);
     return<fieldset>
     <input type="month" value={DateToYYYY_MM(date)} onChange={event=>setDate(YYYYMMToDate(event.target.value))}/>
-    <Calendar date={date}/>
+    <Calendar date={date} classes={{selected:''}}/>
     </fieldset>;
 }
 
@@ -48,7 +59,7 @@ function Test1() {
 function Test2() {
     return <fieldset>
 <LocaleContext.Provider value={"zh"}>
-    <Calendar date={new Date}/>
+    <Calendar date={new Date} classes={{calendar:classes.pinkcalendar,selected: classes.selected}}/>
 </LocaleContext.Provider>
     </fieldset>
 }
@@ -64,15 +75,13 @@ function TestPopUp() {
 
 function Test3() {
   const locale = useContext(LocaleContext),
-        [date, setDate] = useState(new Date),
-        onClick = event=>{
-            const day = +event.target.closest('td[data-day]')?.dataset?.day;
-            if(day)
-                setDate(prev=> new Date(prev.getFullYear(), prev.getMonth(), day))
-        };
-        return <fieldset onClick={onClick}>
+        [date, setDate] = useState(new Date);
+      
+        return <fieldset >
+            <legend>Select Day</legend>
             date: {date.toLocaleDateString(locale)}
-            <Calendar date={date}/>
+            <hr/>
+            <SelectDay date={date} setDate={setDate}/>
         </fieldset>
 }
 
@@ -82,13 +91,8 @@ function Test4() {
     [open,setOpen] = useState(false),
     [date, setDate] = useState(new Date),
     onClick1 = () => setOpen(true),
-    onClick2 = event=>{
-        const day = +event.target.closest('td[data-day]')?.dataset?.day;
-        if(day){
-            setDate(prev=> new Date(prev.getFullYear(), prev.getMonth(), day))
-        setOpen(false);
-        }
-    };
+    onClick2 = () => setOpen(false);
+   
     return <fieldset>
         <div
          onClick={onClick1}
@@ -97,7 +101,7 @@ function Test4() {
         </div>
         <div onClick={onClick2}>
         {open && <PopupWindow>
-            <Calendar date={date}/>
+          <SelectDay date={date} setDate={setDate}/>
             </PopupWindow>}
             </div>
     </fieldset>

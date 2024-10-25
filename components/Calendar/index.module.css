@@ -19,3 +19,18 @@
         content: '📅';
     }
 }
+
+.pinkcalendar {
+    background-color: black;
+    border-collapse: collapse;
+    & td{
+        border: 1px solid white;
+        cursor: pointer;
+        color: white;
+    }
+    & .selected{
+        
+        background-color: blueviolet;
+        border-radius: 50%;
+    }
+}

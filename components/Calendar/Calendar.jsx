@@ -1,10 +1,10 @@
 import { useContext, useMemo } from "react";
 import { LocaleContext } from "./LocaleContext";
-import classes from "./Calendar.module.css";
+import defaultclasses from "./Calendar.module.css";
 
 
 
-export function Calendar({date}) {
+export function Calendar({date, classes= defaultclasses}) {
     const locale = useContext(LocaleContext),
           dayName = useMemo(()=>Array.from({length:7},(_,index)=><td key={index}>{(new Date(2019,0,index)).toLocaleDateString(locale,{weekday:'short'})}</td>),[locale]),
           caption = date.toLocaleDateString(locale,{month: 'long', year:'numeric'}),
@@ -23,9 +23,9 @@ export function Calendar({date}) {
             </tbody>
          </table>
     </>;
-}
 
-function Month({shift, max, selected}) {
+
+function Month({shift, max}) {
     const 
         result = [];
         for(let start = 1 - shift; start <=  + max; start += 7 ){
@@ -35,7 +35,7 @@ function Month({shift, max, selected}) {
 }
 
 
-function Week({start, max, selected}) {
+function Week({start, max}) {
     return <tr>
         {Array.from({length:7}, (_,index)=>{
             const day = start + index;
@@ -46,4 +46,5 @@ function Week({start, max, selected}) {
        
         )}
     </tr>
+}
 }
