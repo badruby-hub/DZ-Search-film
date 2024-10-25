@@ -1,0 +1,21 @@
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    gap: 2em;
+    & fieldset {
+        width: 150px;
+        padding: 1em;
+        margin-top: .7em;
+        border-radius: 20px;
+    }
+}
+
+.dateselector{
+    border: 1px solid gray;
+    text-align: right;
+    &::after{
+        content: '📅';
+    }
+}

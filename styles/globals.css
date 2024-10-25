@@ -6,3 +6,8 @@ main{
 
   margin: 0.5em;
 }
+
+img.atom{
+  background-color: gray;
+  width: 100px;
+}
