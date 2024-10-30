@@ -1,3 +1,4 @@
+//React повторно не будет рендерить компонент Movie, а вместо этого вернёт уже отрендеренный экземпляр из кэша.
 import { memo } from 'react';
 import classes from './Search.module.css';
 export  const Movie2 = memo(function Movie({ movies }) {
