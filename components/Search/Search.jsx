@@ -1,5 +1,7 @@
+import { memo } from 'react';
 import classes from './Search.module.css';
-export function Movie({ movies }) {
+export  const Movie2 = memo(function Movie({ movies }) {
+    console.debug("Search.jsx/movie render")
     return  <>
                  <div className={classes.container}>   {movies.map((movie) => (
                         <figure className={classes.group} key={movie.imdbID}>
@@ -9,4 +11,4 @@ export function Movie({ movies }) {
                     ))}
                     </div>
         </>
-}
+})

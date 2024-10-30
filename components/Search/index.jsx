@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Movie } from "./Search";
+import { useState, useEffect, } from "react";
+import { Movie2 } from "./Search";
 import classes from './Search.module.css';
 
 export function ResultMovie() {
@@ -12,9 +12,12 @@ function MovieTest1() {
     const [nameMovie, setNameMovie] = useState("red"),
           [movies, setMovies] = useState([]),
           [error, setError] = useState("");
+          console.debug('MovieTest1 render' );
 
 
-    const handleSearch = async () => {
+    const handleSearch =  async () => {
+        console.debug('handleSearch render' );
+
         if (!nameMovie) return
         try {
             const response = await fetch(`https://www.omdbapi.com/?apikey=a2b07930&s=${nameMovie}`);
@@ -34,6 +37,7 @@ function MovieTest1() {
     };
 
     useEffect(() => {
+        console.debug("useEffect")
         handleSearch();
     }, []);
     
@@ -48,6 +52,6 @@ function MovieTest1() {
             />
             <button className={classes.button} onClick={handleSearch}>Поиск</button>
         </div>
-        <Movie movies={movies} />
+        <Movie2 movies={movies} />
         </>
    }
